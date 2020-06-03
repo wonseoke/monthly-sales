@@ -1,5 +1,21 @@
 # reporter.py
 
+
+import csv
+
+print("SALES REPORT (OCTOBER 2017)")
+sum = 0
+
+
+csv_filepath = "sales-201710.csv"
+with open(csv_filepath, "r") as csv_file: 
+    reader = csv.DictReader(csv_file)
+    for row in reader:
+        sum = float(row["sales price"]) + sum
+
+
+
+
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -12,4 +28,4 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-print("GENERATING SALES REPORT FOR MONTH OF OCTOBER 2013...")
+print("TOTAL SALES:", to_usd(sum))
