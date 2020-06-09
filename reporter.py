@@ -2,8 +2,12 @@
 
 
 import csv
+import datetime
 
-print("SALES REPORT (OCTOBER 2017)")
+now = datetime.datetime.now()
+
+print("SALES REPORT" , f"MONTH: {month} {year}")
+
 sum = 0
 
 
@@ -11,7 +15,7 @@ csv_filepath = "sales-201710.csv"
 with open(csv_filepath, "r") as csv_file: 
     reader = csv.DictReader(csv_file)
     for row in reader:
-        sum = float(row["sales price"]) + sum
+        sum += float(row["sales price"])
 
 
 
@@ -29,3 +33,6 @@ def to_usd(my_price):
     return f"${my_price:,.2f}" #> $12,000.71
 
 print("TOTAL SALES:", to_usd(sum))
+
+
+""" print([p for p in reader if p["product"]] == "Sticker Pack") """
